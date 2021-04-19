@@ -3,6 +3,8 @@ package com.geoxus.resource.autoconfiguration;
 import com.geoxus.listeners.CommonListener;
 import com.geoxus.resource.autoconfiguration.annotations.CommonAnnotation;
 import com.geoxus.resource.autoconfiguration.annotations.CommonResourceAnnotation;
+import com.geoxus.service.SendRequestToCloudService;
+import com.geoxus.service.impl.SendRequestToCloudServiceImpl;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
@@ -23,6 +25,11 @@ public class CommonAutoConfiguration {
     @Bean  // 如果使用的是Spring Cloud Alibaba 则需要如下的这种方式注册监听器
     public CommonListener commonListener() {
         return new CommonListener();
+    }
+
+    @Bean
+    public SendRequestToCloudService sendRequestToCloudService() {
+        return new SendRequestToCloudServiceImpl();
     }
 
     @Bean
